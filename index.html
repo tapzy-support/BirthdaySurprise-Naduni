@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday, My Love</title>
 
   <!-- Google Fonts -->
@@ -52,6 +53,7 @@
       color: #fff5f8;
       white-space: pre-wrap;
       min-height: 5em;
+      padding: 0 20px;
     }
 
     button {
@@ -139,9 +141,35 @@
       cursor: pointer;
     }
 
-
     .gallery img:hover {
       transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      .typing-text {
+        font-size: 1.2em;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 1em;
+      }
+
+      .popup {
+        padding: 20px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+
+      .gallery img {
+        height: 150px;
+      }
     }
   </style>
 </head>
@@ -176,8 +204,8 @@
 
   <!-- Photo Gallery -->
   <h2 style="margin-top: 80px; font-family: 'Quicksand', sans-serif; font-weight: 600; color: #ffe6f0;">
-  📸 Our Beautiful Moments
-</h2>
+    📸 Our Beautiful Moments
+  </h2>
 
   <div class="gallery">
     <img src="photo1.jpg" alt="Memory 1">
@@ -191,9 +219,9 @@
   <script>
     function showSurprise() {
       const popup = document.getElementById('popup');
-      popup.classList.remove('show'); // Reset any previous animation
-      popup.style.display = 'block';  // Ensure it's visible
-      void popup.offsetWidth;         // Trigger reflow
+      popup.classList.remove('show');
+      popup.style.display = 'block';
+      void popup.offsetWidth;
       popup.classList.add('show');
 
       confetti({
@@ -208,11 +236,12 @@
       popup.classList.remove('show');
       setTimeout(() => {
         popup.style.display = 'none';
-      }, 300); // Give time for animation to fade out
+      }, 300);
     }
 
-    // Typing effect
-    const message = `Today is all about YOU — your smile, your kindness, your magic.\nI'm so lucky to share this life with you.\nReady for your surprise?`;
+    const message = `Today is all about YOU — your smile, your kindness, your magic.
+I'm so lucky to share this life with you.
+Ready for your surprise?`;
     const typingEl = document.getElementById("typing");
     let idx = 0;
 
