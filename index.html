@@ -123,30 +123,48 @@
       font-family: 'Quicksand', sans-serif;
     }
 
-    .gallery {
+.gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   margin: 50px auto;
+  padding: 0 10px;
 }
 
 .gallery img {
-  width: 200px;  /* keeps portrait size reasonable */
-  height: auto;
-  border-radius: 15px;  /* rounded corners */
-  border: 8px solid #ff66cc;  /* soft pink frame */
-  padding: 5px;  /* space between photo and frame */
-  box-shadow: 0 10px 25px rgba(255, 102, 204, 0.4); /* elegant shadow */
+  width: 200px;        /* desktop size */
+  height: auto;        /* keeps portrait ratio */
+  border-radius: 15px;
+  border: 6px solid #ff66cc;
+  padding: 5px;
+  box-shadow: 0 8px 20px rgba(255, 102, 204, 0.4);
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
-  background: white; /* frame background */
+  background: white;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
-  box-shadow: 0 15px 30px rgba(255, 102, 204, 0.6);
+  box-shadow: 0 12px 25px rgba(255, 102, 204, 0.6);
 }
+
+/* Tablet */
+@media (max-width: 768px) {
+  .gallery img {
+    width: 45%; /* two images per row */
+    max-width: 250px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .gallery img {
+    width: 90%; /* one image per row */
+    max-width: none;
+  }
+}
+
     @media (max-width: 600px) {
       h1 {
         font-size: 2em;
