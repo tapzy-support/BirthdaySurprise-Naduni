@@ -124,27 +124,29 @@
     }
 
     .gallery {
-      margin: 50px auto;
-      max-width: 900px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 15px;
-      padding: 0 20px;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 50px auto;
+}
 
-    .gallery img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
+.gallery img {
+  width: 200px;  /* keeps portrait size reasonable */
+  height: auto;
+  border-radius: 15px;  /* rounded corners */
+  border: 8px solid #ff66cc;  /* soft pink frame */
+  padding: 5px;  /* space between photo and frame */
+  box-shadow: 0 10px 25px rgba(255, 102, 204, 0.4); /* elegant shadow */
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  background: white; /* frame background */
+}
 
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(255, 102, 204, 0.6);
+}
     @media (max-width: 600px) {
       h1 {
         font-size: 2em;
@@ -174,7 +176,11 @@
   </style>
 </head>
 <body>
-
+    <!-- Background Music -->
+<audio id="bg-music" autoplay loop>
+  <source src="abc.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
   <h1>Happy Birthday, Nanduni 💖</h1>
 
   <!-- Typing Text -->
