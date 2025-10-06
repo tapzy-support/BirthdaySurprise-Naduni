@@ -17,6 +17,17 @@
       color: white;
       text-align: center;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    #hearts-butterflies-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
     }
 
     h1 {
@@ -25,24 +36,14 @@
       font-family: 'Pacifico', cursive;
       animation: glowBounce 2s ease-out forwards;
       opacity: 0;
+      position: relative;
+      z-index: 1;
     }
 
     @keyframes glowBounce {
-      0% {
-        transform: translateY(-50px);
-        opacity: 0;
-        text-shadow: none;
-      }
-      50% {
-        transform: translateY(10px);
-        opacity: 0.8;
-        text-shadow: 0 0 10px #ff66cc;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-        text-shadow: 0 0 20px #ff99cc, 0 0 40px #ff3399;
-      }
+      0% { transform: translateY(-50px); opacity: 0; text-shadow: none; }
+      50% { transform: translateY(10px); opacity: 0.8; text-shadow: 0 0 10px #ff66cc; }
+      100% { transform: translateY(0); opacity: 1; text-shadow: 0 0 20px #ff99cc, 0 0 40px #ff3399; }
     }
 
     .typing-text {
@@ -54,6 +55,8 @@
       white-space: pre-wrap;
       min-height: 5em;
       padding: 0 20px;
+      position: relative;
+      z-index: 1;
     }
 
     button {
@@ -66,11 +69,11 @@
       cursor: pointer;
       margin-top: 40px;
       transition: background 0.3s;
+      position: relative;
+      z-index: 1;
     }
 
-    button:hover {
-      background-color: #e60073;
-    }
+    button:hover { background-color: #e60073; }
 
     .popup {
       display: none;
@@ -91,26 +94,14 @@
       font-family: 'Quicksand', sans-serif;
     }
 
-    .popup.show {
-      display: block;
-      animation: popupZoom 0.8s ease forwards;
-    }
+    .popup.show { display: block; animation: popupZoom 0.8s ease forwards; }
 
     @keyframes popupZoom {
-      0% {
-        transform: translate(-50%, -50%) scale(0.3);
-        opacity: 0;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-      }
+      0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
     }
 
-    .popup h2 {
-      color: #ff66cc;
-      margin-bottom: 10px;
-    }
+    .popup h2 { color: #ff66cc; margin-bottom: 10px; }
 
     .close-btn {
       background-color: #ff3399;
@@ -123,162 +114,162 @@
       font-family: 'Quicksand', sans-serif;
     }
 
-    /* 🌸 Elegant Gallery Styling */
     .gallery {
       margin: 50px auto;
       max-width: 900px;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 25px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.05);
+      gap: 15px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
     }
+    .gallery img {
+  width: 100%;
+  height: 200px; /* same height for all */
+  object-fit: cover; /* fills frame but may crop slightly */
+  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+  padding: 5px;
+}
 
     .gallery img {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 12px;
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 20px rgba(255, 105, 180, 0.25);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0;
-      animation: fadeInUp 0.8s ease forwards;
+    height: 200px; /* same height for all */
+    object-fit: cover; /* fills frame but may crop slightly */
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      background: rgba(255,255,255,0.05);
+      padding: 5px;
     }
 
-    .gallery img:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 30px rgba(255, 182, 193, 0.5);
-    }
-
-    @keyframes fadeInUp {
-      from {
-        transform: translateY(20px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
+    .gallery img:hover { transform: scale(1.05); }
 
     @media (max-width: 600px) {
-      h1 {
-        font-size: 2em;
-      }
-
-      .typing-text {
-        font-size: 1.2em;
-      }
-
-      button {
-        padding: 10px 20px;
-        font-size: 1em;
-      }
-
-      .popup {
-        padding: 20px;
-      }
-
-      /* Keep two per row in mobile but more breathing space */
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 20px;
-      }
-
-      .gallery img {
-        height: 180px;
-      }
+      h1 { font-size: 2em; }
+      .typing-text { font-size: 1.2em; }
+      button { padding: 10px 20px; font-size: 1em; }
+      .popup { padding: 20px; }
+      .gallery { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
     }
   </style>
 </head>
 <body>
 
-  <h1>Happy Birthday, Nanduni 💖</h1>
+<canvas id="hearts-butterflies-canvas"></canvas>
 
-  <!-- Typing Text -->
-  <div class="typing-text" id="typing"></div>
+<h1>Happy Birthday, Nanduni 💖</h1>
+<div class="typing-text" id="typing"></div>
+<button onclick="showSurprise()">🎁 Click for Your Surprise</button>
 
-  <!-- Surprise Button -->
-  <button onclick="showSurprise()">🎁 Click for Your Surprise</button>
+<div class="popup" id="popup">
+  <h2>My Dearest Nanduni,</h2>
+  <p>
+    You are the best part of every day.<br>
+    May your birthday be as lovely and wonderful as you are.<br>
+    Here's to many more memories together! 🌟<br>
+    I love you endlessly. 💕
+  </p>
+  <audio controls>
+    <source src="Voice.aac" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <button class="close-btn" onclick="closePopup()">Close</button>
+</div>
 
-  <!-- Popup Content -->
-  <div class="popup" id="popup">
-    <h2>My Dearest Nanduni,</h2>
-    <p>
-      You are the best part of every day.<br>
-      May your birthday be as lovely and wonderful as you are.<br>
-      Here's to many more memories together! 🌟<br>
-      I love you endlessly. 💕
-    </p>
+<h2 style="margin-top: 80px; font-family: 'Quicksand', sans-serif; font-weight: 600; color: #ffe6f0;">
+  📸 Our Beautiful Moments
+</h2>
 
-    <!-- Voice Note -->
-    <audio controls>
-      <source src="Voice.aac" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
+<div class="gallery">
+  <img src="photo1.jpg" alt="Memory 1">
+  <img src="photo2.jpg" alt="Memory 2">
+  <img src="photo3.jpg" alt="Memory 3">
+  <img src="photo4.jpg" alt="Memory 4">
+</div>
 
-    <button class="close-btn" onclick="closePopup()">Close</button>
-  </div>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  // Popup
+  function showSurprise() {
+    const popup = document.getElementById('popup');
+    popup.classList.remove('show');
+    popup.style.display = 'block';
+    void popup.offsetWidth;
+    popup.classList.add('show');
+    confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+  }
+  function closePopup() {
+    const popup = document.getElementById('popup');
+    popup.classList.remove('show');
+    setTimeout(() => { popup.style.display = 'none'; }, 300);
+  }
 
-  <!-- Photo Gallery -->
-  <h2 style="margin-top: 80px; font-family: 'Quicksand', sans-serif; font-weight: 600; color: #ffe6f0;">
-    📸 Our Beautiful Moments
-  </h2>
-
-  <div class="gallery">
-    <img src="photo1.jpg" alt="Memory 1">
-    <img src="photo2.jpg" alt="Memory 2">
-    <img src="photo3.jpg" alt="Memory 3">
-    <img src="photo4.jpg" alt="Memory 4">
-  </div>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script>
-    function showSurprise() {
-      const popup = document.getElementById('popup');
-      popup.classList.remove('show');
-      popup.style.display = 'block';
-      void popup.offsetWidth;
-      popup.classList.add('show');
-
-      confetti({
-        particleCount: 150,
-        spread: 100,
-        origin: { y: 0.6 }
-      });
-    }
-
-    function closePopup() {
-      const popup = document.getElementById('popup');
-      popup.classList.remove('show');
-      setTimeout(() => {
-        popup.style.display = 'none';
-      }, 300);
-    }
-
-    const message = `Today is all about YOU — your smile, your kindness, your magic.
+  // Typing
+  const message = `Today is all about YOU — your smile, your kindness, your magic.
 I'm so lucky to share this life with you.
 Ready for your surprise?`;
-    const typingEl = document.getElementById("typing");
-    let idx = 0;
+  const typingEl = document.getElementById("typing");
+  let idx = 0;
+  function type() {
+    if (idx < message.length) { typingEl.textContent += message.charAt(idx); idx++; setTimeout(type, 50); }
+  }
+  window.onload = () => { setTimeout(type, 2500); };
 
-    function type() {
-      if (idx < message.length) {
-        typingEl.textContent += message.charAt(idx);
-        idx++;
-        setTimeout(type, 50);
-      }
-    }
+  // Hearts & Butterflies
+  const canvas = document.getElementById('hearts-butterflies-canvas');
+  const ctx = canvas.getContext('2d');
+  let hearts = [], butterflies = [];
 
-    window.onload = () => {
-      setTimeout(type, 2500);
-    };
-  </script>
+  function resizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
 
+  function random(min,max){ return Math.random()*(max-min)+min; }
+
+  // Create hearts
+  for(let i=0;i<50;i++){
+    hearts.push({x: random(0,canvas.width), y: random(0,canvas.height), size: random(10,25), speed: random(0.5,1.5), color:`rgba(255,${Math.floor(random(100,200))},${Math.floor(random(150,255))},${random(0.6,1)})`});
+  }
+
+  // Create butterflies
+  for(let i=0;i<25;i++){
+    butterflies.push({x: random(0,canvas.width), y: random(0,canvas.height), size: random(15,25), speed: random(0.3,1), angle: random(0,2*Math.PI), color:`rgba(255,255,255,${random(0.4,0.8)})`});
+  }
+
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // Hearts
+    hearts.forEach(h=>{
+      ctx.fillStyle = h.color;
+      ctx.beginPath();
+      ctx.moveTo(h.x, h.y);
+      ctx.bezierCurveTo(h.x, h.y-h.size/2, h.x-h.size, h.y-h.size/2, h.x-h.size, h.y-h.size);
+      ctx.bezierCurveTo(h.x-h.size, h.y-h.size*1.5, h.x, h.y-h.size*1.2, h.x, h.y-h.size);
+      ctx.bezierCurveTo(h.x, h.y-h.size*1.2, h.x+h.size, h.y-h.size*1.5, h.x+h.size, h.y-h.size);
+      ctx.bezierCurveTo(h.x+h.size, h.y-h.size/2, h.x, h.y-h.size/2, h.x, h.y);
+      ctx.fill();
+      h.y -= h.speed;
+      if(h.y < -50){ h.y = canvas.height+50; h.x = random(0,canvas.width); }
+    });
+
+    // Butterflies
+    butterflies.forEach(b=>{
+      ctx.fillStyle = b.color;
+      ctx.beginPath();
+      ctx.arc(b.x,b.y,b.size/2,0,2*Math.PI);
+      ctx.fill();
+      b.x += Math.sin(b.angle)*1;
+      b.y -= b.speed;
+      b.angle += 0.02;
+      if(b.y < -50){ b.y = canvas.height+50; b.x=random(0,canvas.width); }
+    });
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
 </body>
 </html>
