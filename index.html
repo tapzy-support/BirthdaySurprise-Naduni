@@ -123,68 +123,71 @@
       font-family: 'Quicksand', sans-serif;
     }
 
-    /* --- ELEGANT RESPONSIVE GALLERY --- */
     .gallery {
       margin: 50px auto;
-      max-width: 1200px;
+      max-width: 900px;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      padding: 0 25px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 0 20px;
     }
 
     .gallery img {
-      width: 100%;
-      height: 300px;
-      object-fit: contain; /* ensures full photo is visible */
-      border-radius: 15px;
-      background: rgba(255, 255, 255, 0.08); /* soft frame background */
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      padding: 8px; /* gives photo a framed look */
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    cursor: pointer;
     }
 
     .gallery img:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 20px rgba(255, 102, 204, 0.3);
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(255, 192, 203, 0.7);
+    border: 3px solid rgba(255, 192, 203, 0.6);
     }
 
-    /* Tablet */
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      .typing-text {
+        font-size: 1.2em;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 1em;
+      }
+
+      .popup {
+        padding: 20px;
+      }
+
       .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       }
+
       .gallery img {
-        height: 250px;
+        height: 150px;
       }
     }
-
-    /* Mobile */
-    @media (max-width: 500px) {
-      .gallery {
-        grid-template-columns: 1fr;
-        gap: 25px;
-        padding: 0 30px;
-      }
-      .gallery img {
-        height: auto;
-        width: 100%;
-        border-radius: 12px;
-      }
-    }
-
   </style>
 </head>
 <body>
 
   <h1>Happy Birthday, Nanduni 💖</h1>
 
+  <!-- Typing Text -->
   <div class="typing-text" id="typing"></div>
 
+  <!-- Surprise Button -->
   <button onclick="showSurprise()">🎁 Click for Your Surprise</button>
 
+  <!-- Popup Content -->
   <div class="popup" id="popup">
     <h2>My Dearest Nanduni,</h2>
     <p>
@@ -194,6 +197,7 @@
       I love you endlessly. 💕
     </p>
 
+    <!-- Voice Note -->
     <audio controls>
       <source src="Voice.aac" type="audio/mpeg">
       Your browser does not support the audio element.
@@ -202,6 +206,7 @@
     <button class="close-btn" onclick="closePopup()">Close</button>
   </div>
 
+  <!-- Photo Gallery -->
   <h2 style="margin-top: 80px; font-family: 'Quicksand', sans-serif; font-weight: 600; color: #ffe6f0;">
     📸 Our Beautiful Moments
   </h2>
@@ -213,6 +218,7 @@
     <img src="photo4.jpg" alt="Memory 4">
   </div>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
     function showSurprise() {
@@ -221,6 +227,7 @@
       popup.style.display = 'block';
       void popup.offsetWidth;
       popup.classList.add('show');
+
       confetti({
         particleCount: 150,
         spread: 100,
@@ -231,7 +238,9 @@
     function closePopup() {
       const popup = document.getElementById('popup');
       popup.classList.remove('show');
-      setTimeout(() => popup.style.display = 'none', 300);
+      setTimeout(() => {
+        popup.style.display = 'none';
+      }, 300);
     }
 
     const message = `Today is all about YOU — your smile, your kindness, your magic.
@@ -248,7 +257,9 @@ Ready for your surprise?`;
       }
     }
 
-    window.onload = () => setTimeout(type, 2500);
+    window.onload = () => {
+      setTimeout(type, 2500);
+    };
   </script>
 
 </body>
